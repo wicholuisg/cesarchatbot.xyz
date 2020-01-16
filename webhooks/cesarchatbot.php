@@ -42,10 +42,37 @@
     }
     *///////////////////////////////////////////////////////////////////////////////
 
-    $resultado = $mydb->query("INSERT INTO `preguntas`(`pregunta1`,`pregunta2`,`pregunta3`)
-                              VALUES('".$respuesta1."','".$respuesta2."','".$respuesta3."')");
+    //Comparamos vector de respuestas correctas con vector de respuestas dadas por el usuario//
+    $vector_respuestas = array($respuesta1,$respuesta2,$respuesta3);
+    $visual = array("B","A","B");
+    //$array1 = array("B","A","B","C","C","B","A","B","A","C","B","B","C","A","B","A","C","C","A","A","B","C","A","B","A","C","B","C","B","C","B","C","A","B","B","A","A","B","B","C");
+    $auditivo = array("A","C","A");
+    //$array2 = array("A","C","A","B","B","A","B","A","C","B","A","C","A","B","A","C","B","A","B","C","C","A","B","A","B","B","A","B","C","B","A","A","C","A","C","C","B","C","C","A");
+    $quinestesico = array("C","B","C");
+    //$array3 = array("C","B","C","A","A","C","C","C","B","A","C","A","B","C","C","B","A","B","C","B","A","B","C","C","C","A","C","A","A","A","C","B","B","C","A","B","C","A","A","B");
 
-    enviar_texto("Pregunta 1: $respuesta1, Pregunta 2: $respuesta2, Pregunta 3: $respuesta3");
+    if($vector_respuestas == $visual){
+      $clasif = "Eres visual";
+      enviar_texto("$clasif");
+    }
+    elseif($vector_respuestas == $auditivo){
+      $clasif = "Eres auditivo";
+      enviar_texto("$clasif");
+    }
+    elseif($vector_respuestas == $quinestesico){
+      $clasif = "Eres quinestésico";
+      enviar_texto("$clasif");
+    }
+    else{
+      $clasif = "Todos tus canales son igual de fuertes";
+      enviar_texto("$clasif");
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////
+
+    $resultado = $mydb->query("INSERT INTO `preguntas`(`pregunta1`,`pregunta2`,`pregunta3`)
+                              VALUES('".$clasif."','".$respuesta1."','".$respuesta2."','".$respuesta3."')");
+
+    //enviar_texto("Pregunta 1: $respuesta1, Pregunta 2: $respuesta2, Pregunta 3: $respuesta3");
   }
 
 ?>
