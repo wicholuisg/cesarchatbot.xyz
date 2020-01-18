@@ -29,19 +29,19 @@
       //$pregunta1 = $respuesta['pregunta1'];
     */
 
-    $vector_respuestas = array($respuesta1,$respuesta2,$respuesta3);
-    $visual = array("B","A","B","C","C","B","A","B","A","C");
+    $array_usuario = array($respuesta1,$respuesta2,$respuesta3);
+    $array_v = array("B","A","B","C","C","B","A","B","A","C");
     //$array1 = array("B","A","B","C","C","B","A","B","A","C","B","B","C","A","B","A","C","C","A","A","B","C","A","B","A","C","B","C","B","C","B","C","A","B","B","A","A","B","B","C");
-    $auditivo = array("A","C","A","B","B","A","B","A","C","B");
+    $array_a = array("A","C","A","B","B","A","B","A","C","B");
     //$array2 = array("A","C","A","B","B","A","B","A","C","B","A","C","A","B","A","C","B","A","B","C","C","A","B","A","B","B","A","B","C","B","A","A","C","A","C","C","B","C","C","A");
-    $quinestesico = array("C","B","C","A","A","C","C","C","B","A");
+    $array_k = array("C","B","C","A","A","C","C","C","B","A");
     //$array3 = array("C","B","C","A","A","C","C","C","B","A","C","A","B","C","C","B","A","B","C","B","A","B","C","C","C","A","C","A","A","A","C","B","B","C","A","B","C","A","A","B");
 
     $cont_v = 0;
     $cont_a = 0;
     $cont_k = 0;
 
-    while($array_u = current($array1)){
+    while($array_u = current($array_usuario)){
       if($array_u == current($array_v)){
         $cont_v++;
       }
@@ -51,7 +51,7 @@
       elseif($array_u == current($array_k)){
         $cont_k++;
       }
-      next($array1);
+      next($array_usuario);
       next($array_v);
       next($array_a);
       next($array_k);
