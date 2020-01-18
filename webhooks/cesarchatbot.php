@@ -16,63 +16,78 @@
     $respuesta1 = obtener_variables()['respuesta1'];
     $respuesta2 = obtener_variables()['respuesta2'];
     $respuesta3 = obtener_variables()['respuesta3'];
+    $respuesta4 = obtener_variables()['respuesta4'];
+    $respuesta5 = obtener_variables()['respuesta5'];
+    $respuesta6 = obtener_variables()['respuesta6'];
+    $respuesta7 = obtener_variables()['respuesta7'];
+    $respuesta8 = obtener_variables()['respuesta8'];
+    $respuesta9 = obtener_variables()['respuesta9'];
+    $respuesta10 = obtener_variables()['respuesta10'];
     /*QUERY DE CONSULTA SQL
       //$respuesta1 = $mydb->query("SELECT * FROM `preguntas` WHERE 1");
       //$respuesta = mysqli_fetch_assoc($respuesta1);
       //$pregunta1 = $respuesta['pregunta1'];
     */
 
+    $vector_respuestas = array($respuesta1,$respuesta2,$respuesta3);
+    $visual = array("B","A","B","C","C","B","A","B","A","C");
+    //$array1 = array("B","A","B","C","C","B","A","B","A","C","B","B","C","A","B","A","C","C","A","A","B","C","A","B","A","C","B","C","B","C","B","C","A","B","B","A","A","B","B","C");
+    $auditivo = array("A","C","A","B","B","A","B","A","C","B");
+    //$array2 = array("A","C","A","B","B","A","B","A","C","B","A","C","A","B","A","C","B","A","B","C","C","A","B","A","B","B","A","B","C","B","A","A","C","A","C","C","B","C","C","A");
+    $quinestesico = array("C","B","C","A","A","C","C","C","B","A");
+    //$array3 = array("C","B","C","A","A","C","C","C","B","A","C","A","B","C","C","B","A","B","C","B","A","B","C","C","C","A","C","A","A","A","C","B","B","C","A","B","C","A","A","B");
+
+    $cont_v = 0;
+    $cont_a = 0;
+    $cont_k = 0;
+
+    while($array_u = current($array1)){
+      if($array_u == current($array_v)){
+        $cont_v++;
+      }
+      elseif($array_u == current($array_a)){
+        $cont_a++;
+      }
+      elseif($array_u == current($array_k)){
+        $cont_k++;
+      }
+      next($array1);
+      next($array_v);
+      next($array_a);
+      next($array_k);
+    }
+
+    if($cont_v > $cont_a && $cont_v > $cont_k){
+      $clasif = "<strong>VISUAL</strong>";
+      enviar_texto("Tu estilo de aprendizaje es $clasif");
+    }
+    elseif($cont_a > $cont_v && $cont_a >$cont_k){
+      $clasif = "<strong>AUDITIVO</strong>";
+      enviar_texto("Tu estilo de aprendizaje es $clasif");
+    }
+    elseif($cont_k > $cont_v && $cont_k > $cont_a){
+      $clasif = "<strong>QUINESTÉSICO</strong>";
+      enviar_texto("Tu estilo de aprendizaje es $clasif");
+    }
+    else{
+      $clasif = "<strong>TODOS</strong>";
+      enviar_texto("Tu estilo de aprendizaje son TODOS");
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////
+
+    $resultado = $mydb->query("INSERT INTO `respuestas`(`clasif`,`pregunta1`,`pregunta2`,`pregunta3`,`pregunta4`,`pregunta5`,
+                                                        `pregunta6`,`pregunta7`,`pregunta8`,`pregunta9`,`pregunta10`)
+                              VALUES('".$clasif."','".$respuesta1."','".$respuesta2."','".$respuesta3."','".$respuesta4."',
+                                      '".$respuesta5."','".$respuesta6."','".$respuesta7."','".$respuesta8."','".$respuesta9."',
+                                      '".$respuesta10."')");
+
     /*Script para contar mayor número de incisos y generar una respuesta con esto.//
     $vector_respuestas = array($respuesta1,$respuesta2,$respuesta3);
     $inciso_a = count(array_keys($vector_respuestas, "a"));
     $inciso_b = count(array_keys($vector_respuestas, "b"));
     $inciso_c = count(array_keys($vector_respuestas, "c"));
-
-    if($inciso_a > $inciso_b && $inciso_a > $inciso_c){
-      enviar_texto("Tu estilo es visual");
-    }
-    elseif($inciso_b > $inciso_a && $inciso_b > $inciso_a){
-      enviar_texto("Tu estilo es auditivo");
-    }
-    elseif($inciso_c > $inciso_a && $inciso_c > $inciso_b){
-      enviar_texto("Tu estilo es quinestésico");
-    }
-    else{
-      enviar_texto("Tu tienes todos los estilos");
-    }
     *///////////////////////////////////////////////////////////////////////////////
-
-    //Comparamos vector de respuestas correctas con vector de respuestas dadas por el usuario//
-    $vector_respuestas = array($respuesta1,$respuesta2,$respuesta3);
-    $visual = array("B","A","B");
-    //$array1 = array("B","A","B","C","C","B","A","B","A","C","B","B","C","A","B","A","C","C","A","A","B","C","A","B","A","C","B","C","B","C","B","C","A","B","B","A","A","B","B","C");
-    $auditivo = array("A","C","A");
-    //$array2 = array("A","C","A","B","B","A","B","A","C","B","A","C","A","B","A","C","B","A","B","C","C","A","B","A","B","B","A","B","C","B","A","A","C","A","C","C","B","C","C","A");
-    $quinestesico = array("C","B","C");
-    //$array3 = array("C","B","C","A","A","C","C","C","B","A","C","A","B","C","C","B","A","B","C","B","A","B","C","C","C","A","C","A","A","A","C","B","B","C","A","B","C","A","A","B");
-
-    if($vector_respuestas == $visual){
-      $clasif = "Eres visual";
-      enviar_texto("$clasif");
-    }
-    elseif($vector_respuestas == $auditivo){
-      $clasif = "Eres auditivo";
-      enviar_texto("$clasif");
-    }
-    elseif($vector_respuestas == $quinestesico){
-      $clasif = "Eres quinestésico";
-      enviar_texto("$clasif");
-    }
-    else{
-      $clasif = "Todos tus canales son igual de fuertes";
-      enviar_texto("$clasif");
-    }
-    ///////////////////////////////////////////////////////////////////////////////////////////
-
-    $resultado = $mydb->query("INSERT INTO `preguntas`(`pregunta1`,`pregunta2`,`pregunta3`)
-                              VALUES('".$clasif."','".$respuesta1."','".$respuesta2."','".$respuesta3."')");
-
-    //enviar_texto("Pregunta 1: $respuesta1, Pregunta 2: $respuesta2, Pregunta 3: $respuesta3");
   }
 
 ?>
