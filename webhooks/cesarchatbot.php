@@ -12,7 +12,7 @@
   }
 ////////////////////
 
-  if(intent_recibido("Pregunta4Respuesta3")){
+  if(intent_recibido("Pregunta11Respuesta10")){
     $respuesta1 = obtener_variables()['respuesta1'];
     $respuesta2 = obtener_variables()['respuesta2'];
     $respuesta3 = obtener_variables()['respuesta3'];
@@ -29,7 +29,8 @@
       //$pregunta1 = $respuesta['pregunta1'];
     */
 
-    $array_usuario = array($respuesta1,$respuesta2,$respuesta3);
+    $array_usuario = array($respuesta1,$respuesta2,$respuesta3,$respuesta4,$respuesta5,$respuesta6,$respuesta7,$respuesta8,
+                            $respuesta9,$respuesta10);
     $array_v = array("B","A","B","C","C","B","A","B","A","C");
     //$array1 = array("B","A","B","C","C","B","A","B","A","C","B","B","C","A","B","A","C","C","A","A","B","C","A","B","A","C","B","C","B","C","B","C","A","B","B","A","A","B","B","C");
     $array_a = array("A","C","A","B","B","A","B","A","C","B");
@@ -57,30 +58,33 @@
       next($array_k);
     }
 
-    if($cont_v > $cont_a && $cont_v > $cont_k){
-      $clasif = "<strong>VISUAL</strong>";
-      enviar_texto("Tu estilo de aprendizaje es $clasif");
-    }
-    elseif($cont_a > $cont_v && $cont_a >$cont_k){
-      $clasif = "<strong>AUDITIVO</strong>";
-      enviar_texto("Tu estilo de aprendizaje es $clasif");
-    }
-    elseif($cont_k > $cont_v && $cont_k > $cont_a){
-      $clasif = "<strong>QUINESTÉSICO</strong>";
-      enviar_texto("Tu estilo de aprendizaje es $clasif");
+    if($cont_v > $cont_a){
+      if($cont_v > $cont_k){
+        $clasif = "VISUAL";
+      }
+      else{
+        $clasif = "QUINESTÉSICO";
+      }
     }
     else{
-      $clasif = "<strong>TODOS</strong>";
-      enviar_texto("Tu estilo de aprendizaje son TODOS");
+      if($cont_a > $cont_k){
+        $clasif = "AUDITIVO";
+      }
+      else{
+        $clasif = "QUINESTÉSICO";
+      }
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     $resultado = $mydb->query("INSERT INTO `respuestas`(`clasif`,`pregunta1`,`pregunta2`,`pregunta3`,`pregunta4`,`pregunta5`,
                                                         `pregunta6`,`pregunta7`,`pregunta8`,`pregunta9`,`pregunta10`)
-                              VALUES('".$clasif."','".$respuesta1."','".$respuesta2."','".$respuesta3."','".$respuesta4."',
+                                VALUES('".$clasif."','".$respuesta1."','".$respuesta2."','".$respuesta3."','".$respuesta4."',
                                       '".$respuesta5."','".$respuesta6."','".$respuesta7."','".$respuesta8."','".$respuesta9."',
                                       '".$respuesta10."')");
+
+
+    enviar_texto("Tu estilo de aprendizaje es $clasif");
 
     /*Script para contar mayor número de incisos y generar una respuesta con esto.//
     $vector_respuestas = array($respuesta1,$respuesta2,$respuesta3);
