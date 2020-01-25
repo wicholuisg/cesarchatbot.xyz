@@ -23,6 +23,46 @@
     $respuesta8 = obtener_variables()['respuesta8'];
     $respuesta9 = obtener_variables()['respuesta9'];
     $respuesta10 = obtener_variables()['respuesta10'];
+  }
+
+  if(intent_recibido("Pregunta21Respuesta20")){
+    $respuesta11 = obtener_variables()['respuesta11'];
+    $respuesta12 = obtener_variables()['respuesta12'];
+    $respuesta13 = obtener_variables()['respuesta13'];
+    $respuesta14 = obtener_variables()['respuesta14'];
+    $respuesta15 = obtener_variables()['respuesta15'];
+    $respuesta16 = obtener_variables()['respuesta16'];
+    $respuesta17 = obtener_variables()['respuesta17'];
+    $respuesta18 = obtener_variables()['respuesta18'];
+    $respuesta19 = obtener_variables()['respuesta19'];
+    $respuesta20 = obtener_variables()['respuesta20'];
+  }
+
+  if(intent_recibido("Pregunta31Respuesta30")){
+    $respuesta21 = obtener_variables()['respuesta21'];
+    $respuesta22 = obtener_variables()['respuesta22'];
+    $respuesta23 = obtener_variables()['respuesta23'];
+    $respuesta24 = obtener_variables()['respuesta24'];
+    $respuesta25 = obtener_variables()['respuesta25'];
+    $respuesta26 = obtener_variables()['respuesta26'];
+    $respuesta27 = obtener_variables()['respuesta27'];
+    $respuesta28 = obtener_variables()['respuesta28'];
+    $respuesta29 = obtener_variables()['respuesta29'];
+    $respuesta30 = obtener_variables()['respuesta30'];
+  }
+
+  if(intent_recibido("Respuesta40Clasificación")){
+    $respuesta31 = obtener_variables()['respuesta31'];
+    $respuesta32 = obtener_variables()['respuesta32'];
+    $respuesta33 = obtener_variables()['respuesta33'];
+    $respuesta34 = obtener_variables()['respuesta34'];
+    $respuesta35 = obtener_variables()['respuesta35'];
+    $respuesta36 = obtener_variables()['respuesta36'];
+    $respuesta37 = obtener_variables()['respuesta37'];
+    $respuesta38 = obtener_variables()['respuesta38'];
+    $respuesta39 = obtener_variables()['respuesta39'];
+    $respuesta40 = obtener_variables()['respuesta40'];
+
     /*QUERY DE CONSULTA SQL
       //$respuesta1 = $mydb->query("SELECT * FROM `preguntas` WHERE 1");
       //$respuesta = mysqli_fetch_assoc($respuesta1);
@@ -30,13 +70,17 @@
     */
 
     $array_usuario = array($respuesta1,$respuesta2,$respuesta3,$respuesta4,$respuesta5,$respuesta6,$respuesta7,$respuesta8,
-                            $respuesta9,$respuesta10);
-    $array_v = array("B","A","B","C","C","B","A","B","A","C");
-    //$array1 = array("B","A","B","C","C","B","A","B","A","C","B","B","C","A","B","A","C","C","A","A","B","C","A","B","A","C","B","C","B","C","B","C","A","B","B","A","A","B","B","C");
-    $array_a = array("A","C","A","B","B","A","B","A","C","B");
-    //$array2 = array("A","C","A","B","B","A","B","A","C","B","A","C","A","B","A","C","B","A","B","C","C","A","B","A","B","B","A","B","C","B","A","A","C","A","C","C","B","C","C","A");
-    $array_k = array("C","B","C","A","A","C","C","C","B","A");
-    //$array3 = array("C","B","C","A","A","C","C","C","B","A","C","A","B","C","C","B","A","B","C","B","A","B","C","C","C","A","C","A","A","A","C","B","B","C","A","B","C","A","A","B");
+                            $respuesta9,$respuesta10,$respuesta11,$respuesta12,$respuesta13,$respuesta14,$respuesta15,
+                            $respuesta16,$respuesta17,$respuesta18,$respuesta19,$respuesta20,$respuesta21,$respuesta22,
+                            $respuesta23,$respuesta24,$respuesta25,$respuesta26,$respuesta27,$respuesta28,$respuesta29,
+                            $respuesta30,$respuesta31,$respuesta32,$respuesta33,$respuesta34,$respuesta35,$respuesta36,
+                            $respuesta37,$respuesta38,$respuesta39,$respuesta40);
+    $array_v = array("b","a","b","c","c","b","a","b","a","c","b","b","c","a","b","a","c","c","a","a","b","c","a",
+                      "b","a","c","b","c","b","c","b","c","a","b","b","a","a","b","b","c");
+    $array_a = array("a","c","a","b","b","a","b","a","c","b","a","c","a","b","a","c","b","a","b","c","c","a","b",
+                      "a","b","b","a","b","c","b","a","a","c","a","c","c","b","c","c","a");
+    $array_k = array("c","b","c","a","a","c","c","c","b","a","c","a","b","c","c","b","a","b","c","b","a","b","c",
+                      "c","c","a","c","a","a","a","c","b","b","c","a","b","c","a","a","b");
 
     $cont_v = 0;
     $cont_a = 0;
@@ -78,11 +122,23 @@
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     $resultado = $mydb->query("INSERT INTO `respuestas`(`clasif`,`pregunta1`,`pregunta2`,`pregunta3`,`pregunta4`,`pregunta5`,
-                                                        `pregunta6`,`pregunta7`,`pregunta8`,`pregunta9`,`pregunta10`)
+                                                        `pregunta6`,`pregunta7`,`pregunta8`,`pregunta9`,`pregunta10`,
+                                                        `pregunta11`,`pregunta12`,`pregunta13`,`pregunta14`,`pregunta15`,
+                                                        `pregunta16`,`pregunta17`,`pregunta18`,`pregunta19`,`pregunta20`,
+                                                        `pregunta21`,`pregunta22`,`pregunta23`,`pregunta24`,`pregunta25`,
+                                                        `pregunta26`,`pregunta27`,`pregunta28`,`pregunta29`,`pregunta30`,
+                                                        `pregunta31`,`pregunta32`,`pregunta33`,`pregunta34`,`pregunta35`,
+                                                        `pregunta36`,`pregunta37`,`pregunta38`,`pregunta39`,`pregunta40`)
                                 VALUES('".$clasif."','".$respuesta1."','".$respuesta2."','".$respuesta3."','".$respuesta4."',
                                       '".$respuesta5."','".$respuesta6."','".$respuesta7."','".$respuesta8."','".$respuesta9."',
-                                      '".$respuesta10."')");
-
+                                      '".$respuesta10."','".$respuesta11."','".$respuesta12."','".$respuesta13."',
+                                      '".$respuesta14."','".$respuesta15."','".$respuesta16."','".$respuesta17."',
+                                      '".$respuesta18."','".$respuesta19."','".$respuesta20."','".$respuesta21."',
+                                      '".$respuesta22."','".$respuesta23."','".$respuesta24."',,'".$respuesta25."',
+                                      '".$respuesta26."','".$respuesta27."','".$respuesta28."','".$respuesta29."',
+                                      '".$respuesta30."','".$respuesta31."','".$respuesta32."','".$respuesta33."',
+                                      '".$respuesta34."','".$respuesta35."','".$respuesta36."','".$respuesta37."',
+                                      '".$respuesta38."','".$respuesta39."','".$respuesta40."',)");
 
     enviar_texto("Tu estilo de aprendizaje es $clasif");
 
