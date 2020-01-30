@@ -23,6 +23,15 @@
     $respuesta8 = obtener_variables()['respuesta8'];
     $respuesta9 = obtener_variables()['respuesta9'];
     $respuesta10 = obtener_variables()['respuesta10'];
+    $usuario = obtener_variables()['usuario'];
+    $edad = obtener_variables()['edad'];
+    $sexo = obtener_variables()['sexo'];
+
+    $resultado1 = $mydb->query("INSERT INTO `respuestas`(`usuario`,`edad`,`sexo`,`pregunta1`,`pregunta2`,`pregunta3`,`pregunta4`,
+                                                        `pregunta5`,`pregunta6`,`pregunta7`,`pregunta8`,`pregunta9`,`pregunta10`)
+                                VALUES('".$usuario."','".$edad."','".$sexo."','".$respuesta1."','".$respuesta2."','".$respuesta3."',
+                                      '".$respuesta4."','".$respuesta5."','".$respuesta6."','".$respuesta7."','".$respuesta8."',
+                                      '".$respuesta9."','".$respuesta10."')");
   }
 
   if(intent_recibido("Pregunta21Respuesta20")){
@@ -36,6 +45,15 @@
     $respuesta18 = obtener_variables()['respuesta18'];
     $respuesta19 = obtener_variables()['respuesta19'];
     $respuesta20 = obtener_variables()['respuesta20'];
+    $usuario = obtener_variables()['usuario'];
+
+    $resultado2 = $mydb->query("UPDATE `respuestas` SET `pregunta11`='".$respuesta11."',`pregunta12`='".$respuesta12."',
+                                                  `pregunta13`='".$respuesta13."',`pregunta14`='".$respuesta14."',
+                                                  `pregunta15`='".$respuesta15."',`pregunta15`='".$respuesta15."',
+                                                  `pregunta16`='".$respuesta16."',`pregunta17`='".$respuesta17."',
+                                                  `pregunta18`='".$respuesta18."',`pregunta19`='".$respuesta19."',
+                                                  `pregunta20`='".$respuesta20."'
+                                                WHERE `usuario` = '".$usuario."'");
   }
 
   if(intent_recibido("Pregunta31Respuesta30")){
@@ -49,6 +67,15 @@
     $respuesta28 = obtener_variables()['respuesta28'];
     $respuesta29 = obtener_variables()['respuesta29'];
     $respuesta30 = obtener_variables()['respuesta30'];
+    $usuario = obtener_variables()['usuario'];
+
+    $resultado3 = $mydb->query("UPDATE `respuestas` SET `pregunta21`='".$respuesta21."',`pregunta22`='".$respuesta22."',
+                                                  `pregunta23`='".$respuesta23."',`pregunta24`='".$respuesta24."',
+                                                  `pregunta25`='".$respuesta25."',`pregunta25`='".$respuesta25."',
+                                                  `pregunta26`='".$respuesta26."',`pregunta27`='".$respuesta27."',
+                                                  `pregunta28`='".$respuesta28."',`pregunta29`='".$respuesta29."',
+                                                  `pregunta30`='".$respuesta30."'
+                                                WHERE `usuario` = '".$usuario."'");
   }
 
   if(intent_recibido("Respuesta40Clasificación")){
@@ -62,19 +89,18 @@
     $respuesta38 = obtener_variables()['respuesta38'];
     $respuesta39 = obtener_variables()['respuesta39'];
     $respuesta40 = obtener_variables()['respuesta40'];
+    $usuario = obtener_variables()['usuario'];
 
-    /*QUERY DE CONSULTA SQL
-      //$respuesta1 = $mydb->query("SELECT * FROM `preguntas` WHERE 1");
-      //$respuesta = mysqli_fetch_assoc($respuesta1);
-      //$pregunta1 = $respuesta['pregunta1'];
-    */
+    $respuestas_db = $mydb->query("SELECT `pregunta1`, `pregunta2`, `pregunta3`, `pregunta4`, `pregunta5`, `pregunta6`, `pregunta7`,
+                                `pregunta8`, `pregunta9`, `pregunta10`, `pregunta11`, `pregunta12`, `pregunta13`, `pregunta14`,
+                                `pregunta15`, `pregunta16`, `pregunta17`, `pregunta18`, `pregunta19`, `pregunta20`, `pregunta21`,
+                                `pregunta22`, `pregunta23`, `pregunta24`, `pregunta25`, `pregunta26`, `pregunta27`, `pregunta28`,
+                                `pregunta29`, `pregunta30`, `pregunta31`, `pregunta32`, `pregunta33`, `pregunta34`, `pregunta35`,
+                                `pregunta36`, `pregunta37`, `pregunta38`, `pregunta39`, `pregunta40` FROM `respuestas`
+                                WHERE `usuario` = '".$usuario."'");
 
-    $array_usuario = array($respuesta1,$respuesta2,$respuesta3,$respuesta4,$respuesta5,$respuesta6,$respuesta7,$respuesta8,
-                            $respuesta9,$respuesta10,$respuesta11,$respuesta12,$respuesta13,$respuesta14,$respuesta15,
-                            $respuesta16,$respuesta17,$respuesta18,$respuesta19,$respuesta20,$respuesta21,$respuesta22,
-                            $respuesta23,$respuesta24,$respuesta25,$respuesta26,$respuesta27,$respuesta28,$respuesta29,
-                            $respuesta30,$respuesta31,$respuesta32,$respuesta33,$respuesta34,$respuesta35,$respuesta36,
-                            $respuesta37,$respuesta38,$respuesta39,$respuesta40);
+    $array_usuario = mysqli_fetch_assoc($respuestas_db);
+
     $array_v = array("b","a","b","c","c","b","a","b","a","c","b","b","c","a","b","a","c","c","a","a","b","c","a",
                       "b","a","c","b","c","b","c","b","c","a","b","b","a","a","b","b","c");
     $array_a = array("a","c","a","b","b","a","b","a","c","b","a","c","a","b","a","c","b","a","b","c","c","a","b",
@@ -120,34 +146,15 @@
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////
-
-    $resultado = $mydb->query("INSERT INTO `respuestas`(`clasif`,`pregunta1`,`pregunta2`,`pregunta3`,`pregunta4`,`pregunta5`,
-                                                        `pregunta6`,`pregunta7`,`pregunta8`,`pregunta9`,`pregunta10`,
-                                                        `pregunta11`,`pregunta12`,`pregunta13`,`pregunta14`,`pregunta15`,
-                                                        `pregunta16`,`pregunta17`,`pregunta18`,`pregunta19`,`pregunta20`,
-                                                        `pregunta21`,`pregunta22`,`pregunta23`,`pregunta24`,`pregunta25`,
-                                                        `pregunta26`,`pregunta27`,`pregunta28`,`pregunta29`,`pregunta30`,
-                                                        `pregunta31`,`pregunta32`,`pregunta33`,`pregunta34`,`pregunta35`,
-                                                        `pregunta36`,`pregunta37`,`pregunta38`,`pregunta39`,`pregunta40`)
-                                VALUES('".$clasif."','".$respuesta1."','".$respuesta2."','".$respuesta3."','".$respuesta4."',
-                                      '".$respuesta5."','".$respuesta6."','".$respuesta7."','".$respuesta8."','".$respuesta9."',
-                                      '".$respuesta10."','".$respuesta11."','".$respuesta12."','".$respuesta13."',
-                                      '".$respuesta14."','".$respuesta15."','".$respuesta16."','".$respuesta17."',
-                                      '".$respuesta18."','".$respuesta19."','".$respuesta20."','".$respuesta21."',
-                                      '".$respuesta22."','".$respuesta23."','".$respuesta24."',,'".$respuesta25."',
-                                      '".$respuesta26."','".$respuesta27."','".$respuesta28."','".$respuesta29."',
-                                      '".$respuesta30."','".$respuesta31."','".$respuesta32."','".$respuesta33."',
-                                      '".$respuesta34."','".$respuesta35."','".$respuesta36."','".$respuesta37."',
-                                      '".$respuesta38."','".$respuesta39."','".$respuesta40."',)");
+    $resultado4 = $mydb->query("UPDATE `respuestas` SET `pregunta31`='".$respuesta31."',`pregunta32`='".$respuesta32."',
+                                                  `pregunta33`='".$respuesta33."',`pregunta34`='".$respuesta34."',
+                                                  `pregunta35`='".$respuesta35."',`pregunta35`='".$respuesta35."',
+                                                  `pregunta36`='".$respuesta36."',`pregunta37`='".$respuesta37."',
+                                                  `pregunta38`='".$respuesta38."',`pregunta39`='".$respuesta39."',
+                                                  `pregunta40`='".$respuesta40."',`clasif`='".$clasif."'
+                                                WHERE `usuario` = '".$usuario."'");
 
     enviar_texto("Tu estilo de aprendizaje es $clasif");
-
-    /*Script para contar mayor número de incisos y generar una respuesta con esto.//
-    $vector_respuestas = array($respuesta1,$respuesta2,$respuesta3);
-    $inciso_a = count(array_keys($vector_respuestas, "a"));
-    $inciso_b = count(array_keys($vector_respuestas, "b"));
-    $inciso_c = count(array_keys($vector_respuestas, "c"));
-    *///////////////////////////////////////////////////////////////////////////////
   }
 
 ?>
